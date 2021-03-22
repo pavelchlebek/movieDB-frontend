@@ -1,0 +1,12 @@
+.List {
+  background-color: #fff;
+  width: 70vw;
+  max-width: 600px;
+  margin: 0px auto;
+  padding: 20px;
+}
+
+.Heading {
+  text-align: center;
+  margin: 0px 0;
+}

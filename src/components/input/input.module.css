@@ -1,0 +1,14 @@
+.Input {
+  display: block;
+  width: 200px;
+  height: 24px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  padding: 4px 10px;
+  outline-color: #777;
+}
+
+::placeholder {
+  color: #ccc;
+}

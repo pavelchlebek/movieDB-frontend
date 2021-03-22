@@ -1,0 +1,51 @@
+.List {
+  background-color: #fff;
+  width: 70vw;
+  max-width: 600px;
+  margin: 0px auto;
+  padding: 20px;
+}
+
+.Heading {
+  text-align: center;
+  /* border: 1px solid green; */
+  margin-top: 0px;
+  padding-top: 10px;
+}
+
+.FormBody {
+  /* border: 1px solid blue; */
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Description {
+  width: 320px;
+  height: 180px;
+  /* font-size: 24px; */
+  font-family: inherit;
+  padding: 14px 20px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  outline-color: #777;
+  box-sizing: border-box;
+}
+
+.TagContainer {
+  margin-bottom: 10px;
+  width: 215px;
+  /* border: 1px solid #ccc; */
+}
+
+.MovieSavedContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ServerTitle {
+  font-weight: 700;
+}

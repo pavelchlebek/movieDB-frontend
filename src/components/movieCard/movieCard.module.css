@@ -1,0 +1,78 @@
+.Card {
+  width: 85%;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #f6f6f5;
+  box-shadow: 0 2px 3px #ccc;
+  margin-bottom: 18px;
+  display: flex;
+  cursor: pointer;
+}
+
+.PictureContainer {
+  position: relative;
+  /* width: 35%; */
+}
+
+.Sticker {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 100%;
+  max-width: 125px;
+  text-align: center;
+  background-color: #888;
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+.Picture {
+  width: 100%;
+  max-width: 125px;
+  height: 120px;
+  padding-left: 8px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  /* border: 1px solid blue; */
+}
+
+/* @media (min-width: 700px) {
+  .Picture {
+    width: 250px;
+  }
+} */
+
+.Details {
+  margin-left: 20px;
+  /* border: 1px solid black; */
+  display: flex;
+  /* justify-content: center; */
+  flex-direction: column;
+  /* justify-content: space-between; */
+}
+
+.Title {
+  font-size: 18px;
+  /* border: 1px solid blue; */
+  margin-top: 10px;
+  margin-right: 12px;
+  margin-bottom: 6px;
+  /* border: 1px solid red; */
+}
+
+.Year {
+  margin-top: 0px;
+  margin-bottom: 6px;
+  /* border: 1px solid red; */
+}
+
+.TagList {
+  margin-bottom: 6px;
+  /* border: 1px solid yellow; */
+}
+
+.Cast {
+  /* border: 1px solid green; */
+  margin-top: 0px;
+}

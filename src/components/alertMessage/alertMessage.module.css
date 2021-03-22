@@ -1,0 +1,12 @@
+.Alert {
+  margin-top: 10px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  display: none;
+  color: #dd2211;
+}
+
+.Visible {
+  display: block;
+}

@@ -1,0 +1,106 @@
+.List {
+  background-color: #fff;
+  width: 70vw;
+  max-width: 600px;
+  margin: 0px auto;
+  padding: 20px;
+}
+
+.MovieBox {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #f6f6f5;
+  box-shadow: 0 2px 3px #ccc;
+  margin-bottom: 18px;
+  /* display: flex; */
+}
+.HeadSection {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ddd;
+  /* border: 1px solid black; */
+}
+
+.Title {
+  /* border: 1px solid blue; */
+  margin: 0px;
+  padding: 10px 10px;
+}
+
+.Year {
+  /* border: 1px solid blue; */
+  margin: 0px;
+
+  padding: 10px 0px;
+}
+
+.Rating {
+  /* border: 1px solid blue; */
+  margin: 0px;
+  /* margin-left: 120px; */
+  padding: 10px 10px;
+  /* background-color: #f5c518; */
+  color: #000;
+}
+
+.PictureBox {
+  padding: 15px;
+  /* border: 1px solid black; */
+  display: flex;
+  /* border: 1px solid red; */
+}
+
+.Picture {
+  box-shadow: 0 2px 3px #ccc;
+  width: 50%;
+  /* max-height: 240px; */
+  /* border: 1px solid red; */
+}
+
+.Tags {
+  padding: 15px;
+  padding-left: 24px;
+  width: 100%;
+  /* border: 1px solid green; */
+}
+
+.Cast {
+  /* height: 155px; */
+  /* border: 1px solid red; */
+}
+
+.Blue {
+  color: #426cb9;
+}
+
+.Description {
+  padding: 0px 15px;
+  padding-bottom: 15px;
+}
+
+.SeenToggle {
+  padding: 0px 15px;
+  margin-top: 10px;
+}
+
+.Toggle {
+  margin: 0px;
+  border: 1px solid #47677f;
+  padding: 10px 0px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.ToggleClicked {
+  color: #ccc;
+  border: 1px solid #ccc;
+}
+
+.ModalContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

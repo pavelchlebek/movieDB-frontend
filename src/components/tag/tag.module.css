@@ -1,0 +1,21 @@
+.Title {
+  padding: 4px;
+  color: white;
+
+  font-size: 11px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  border: 1px solid white;
+  border-radius: 5px;
+  text-transform: capitalize;
+  cursor: pointer;
+  /* display: inline-block; */
+}
+
+.Clicked {
+  background-color: #aa55ff;
+}
+
+.Default {
+  background-color: #ccc;
+}

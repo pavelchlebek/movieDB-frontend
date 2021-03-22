@@ -1,0 +1,52 @@
+.List {
+  background-color: #fff;
+  width: 70vw;
+  max-width: 600px;
+  margin: 0px auto;
+  padding: 20px;
+}
+
+.MovieBox {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #f6f6f5;
+  box-shadow: 0 2px 3px #ccc;
+  margin-bottom: 18px;
+  padding-bottom: 15px;
+
+  /* display: flex; */
+}
+
+.Heading {
+  text-align: center;
+  /* border: 1px solid green; */
+  margin-top: 0px;
+  padding-top: 10px;
+}
+
+.Title {
+  text-align: center;
+  /* border: 1px solid red; */
+  margin-bottom: 9px;
+  /* border: 1px solid blue; */
+  margin-top: 0px;
+}
+
+/* .TagList {
+  border: 1px solid green;
+  margin-top: 10px;
+} */
+
+.Section {
+  /* border: 1px solid #ccc; */
+  padding-bottom: 0px;
+  /* border-radius: 3px; */
+  padding: 10px;
+  /* border: 1px solid #ccc; */
+}
+
+.Button {
+  display: flex;
+  justify-content: center;
+}
