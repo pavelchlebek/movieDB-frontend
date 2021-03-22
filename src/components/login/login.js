@@ -201,7 +201,7 @@ class Login extends Component {
           </form>
           {this.state.signupData ? <p>{this.state.signupData + this.state.continue}</p> : null}
           {this.state.loading && <Spinner />}
-          <div>First cleanup --- test git commit</div>
+          <div>First cleanup --- test git commit + ignoring .eslintcache</div>
         </div>
       </React.Fragment>
     );
