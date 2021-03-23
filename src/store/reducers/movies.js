@@ -102,6 +102,12 @@ const reducer = (state = initialState, action) => {
         userName: "",
         userId: "",
         movies: action.newMovies,
+        actors: [],
+        directors: [],
+        origins: [],
+        currentPage: 1,
+        currentMovie: {},
+        allMovies: [],
       };
     case actionTypes.GET_ALL_MOVIES:
       return {
