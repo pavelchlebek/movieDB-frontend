@@ -9,15 +9,13 @@ const NavigationItems = (props) => (
     <NavigationItem link="/" exact>
       All Movies
     </NavigationItem>
-    <NavigationItem link="/details">Details</NavigationItem>
-    <NavigationItem link="/my-movies">My Movies</NavigationItem>
+    <NavigationItem link="/movie-detail">Detail</NavigationItem>
+    <NavigationItem link="/my-movies">Moje filmy</NavigationItem>
     <NavigationItem link="/settings">Nastavení</NavigationItem>
     <NavigationItem link="/post-movie">Přidat film</NavigationItem>
     <NavigationItem link="/authenticate">
       {props.userName ? props.userName : "Log In"}
     </NavigationItem>
-    <NavigationItem link="/pagination">Pagination*</NavigationItem>
-    <NavigationItem link="/movie-detail">Detail*</NavigationItem>
   </ul>
 );
 

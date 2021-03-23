@@ -77,7 +77,7 @@ class SettingsScreen extends Component {
   };
 
   handleRedirect = () => {
-    this.props.history.push("/pagination");
+    this.props.history.push("/");
   };
 
   render() {
