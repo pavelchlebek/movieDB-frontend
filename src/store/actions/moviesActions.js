@@ -8,7 +8,7 @@ export const ADD_DIRECTOR_TAG = "ADD_DIRECTOR_TAG";
 export const LOGIN = "LOGIN";
 export const LOGOUT = "LOGOUT";
 
-export const GET_ALL_MOVIES = "GET_ALL_MOVIES";
+export const SET_ALL_MOVIES = "SET_ALL_MOVIES";
 export const SET_CURRENT_MOVIE = "SET_CURRENT_MOVIE";
 export const SET_MY_MOVIES = "SET_MY_MOVIES";
 

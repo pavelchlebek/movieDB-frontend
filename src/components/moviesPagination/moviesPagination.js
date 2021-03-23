@@ -14,9 +14,6 @@ import * as actionTypes from "../../store/actions/moviesActions";
 class MovieList extends Component {
   state = {
     count: 0,
-    editedMovies: [],
-    showMovies: [],
-    currentPage: 1,
     moviesPerPage: 10,
     modalShow:
       this.props.genres.length > 1 ||
@@ -37,12 +34,10 @@ class MovieList extends Component {
       axios
         .get("http://localhost:8080/movies-settings/" + this.props.currentPage + queryString)
         .then((result) => {
-          // this.props.onGetAllMovies(result.data);
           this.setState({
-            editedMovies: result.data.result,
-            // showMovies: result.data.result.slice(0, this.state.moviesPerPage),
             count: result.data.count,
           });
+          this.props.onSetAllMovies(result.data.result);
         })
         .catch((error) => {
           console.log("allMovies error: ", error);
@@ -76,11 +71,7 @@ class MovieList extends Component {
   pageHandler = (page) => {
     const queryString = `/${this.props.genres[0]}/${this.props.actors[0]}/${this.props.directors[0]}/${this.props.origins[0]}`;
     axios.get("http://localhost:8080/movies-settings/" + page + queryString).then((result) => {
-      this.setState({
-        editedMovies: result.data.result,
-        // showMovies: result.data.result.slice(0, this.state.moviesPerPage),
-        currentPage: page,
-      });
+      this.props.onSetAllMovies(result.data.result);
       this.props.onSetCurrentPage(page);
     });
   };
@@ -134,7 +125,7 @@ class MovieList extends Component {
           <p>directors: {this.props.directors}</p>
           <p>origins: {this.props.origins}</p>
         </div> */}
-        {this.state.editedMovies.map((movie) => {
+        {this.props.allMovies.map((movie) => {
           return (
             <MovieCard
               key={movie._id}
@@ -196,6 +187,8 @@ const mapDispatchToProps = (dispatch) => {
     onSetMyMovies: (myMovies) => dispatch({ type: actionTypes.SET_MY_MOVIES, myMovies: myMovies }),
     onSetCurrentPage: (currentPage) =>
       dispatch({ type: actionTypes.SET_CURRENT_PAGE, currentPage: currentPage }),
+    onSetAllMovies: (allMovies) =>
+      dispatch({ type: actionTypes.SET_ALL_MOVIES, allMovies: allMovies }),
   };
 };
 

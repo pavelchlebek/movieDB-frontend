@@ -109,7 +109,7 @@ const reducer = (state = initialState, action) => {
         currentMovie: {},
         allMovies: [],
       };
-    case actionTypes.GET_ALL_MOVIES:
+    case actionTypes.SET_ALL_MOVIES:
       return {
         ...state,
         allMovies: action.allMovies,
