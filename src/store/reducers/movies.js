@@ -11,6 +11,7 @@ const initialState = {
   userName: "",
   currentMovie: {},
   currentPage: 1,
+  moviesCount: null,
 };
 
 const reducer = (state = initialState, action) => {
@@ -133,6 +134,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         currentPage: 1,
+      };
+    case actionTypes.SET_MOVIES_COUNT:
+      return {
+        ...state,
+        moviesCount: action.moviesCount,
       };
     default:
       return state;

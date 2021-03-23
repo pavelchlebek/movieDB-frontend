@@ -13,7 +13,6 @@ import * as actionTypes from "../../store/actions/moviesActions";
 
 class MovieList extends Component {
   state = {
-    count: 0,
     moviesPerPage: 10,
     modalShow:
       this.props.genres.length > 1 ||
@@ -34,10 +33,8 @@ class MovieList extends Component {
       axios
         .get("http://localhost:8080/movies-settings/" + this.props.currentPage + queryString)
         .then((result) => {
-          this.setState({
-            count: result.data.count,
-          });
           this.props.onSetAllMovies(result.data.result);
+          this.props.onSetMoviesCount(result.data.count);
         })
         .catch((error) => {
           console.log("allMovies error: ", error);
@@ -143,7 +140,7 @@ class MovieList extends Component {
           );
         })}
         <Pagination
-          moviesCount={this.state.count}
+          moviesCount={this.props.moviesCount}
           moviesPerPage={this.state.moviesPerPage}
           onClick={this.pageHandler}
           active={this.getActive}
@@ -157,7 +154,7 @@ class MovieList extends Component {
           //     : false
           // }
           showNext={
-            this.props.currentPage < Math.ceil(this.state.count / this.state.moviesPerPage)
+            this.props.currentPage < Math.ceil(this.props.moviesCount / this.state.moviesPerPage)
               ? true
               : false
           }
@@ -178,6 +175,7 @@ const mapStateToProps = (state) => {
     directors: state.movies.directors,
     origins: state.movies.origins,
     currentPage: state.movies.currentPage,
+    moviesCount: state.movies.moviesCount,
   };
 };
 
@@ -189,6 +187,8 @@ const mapDispatchToProps = (dispatch) => {
       dispatch({ type: actionTypes.SET_CURRENT_PAGE, currentPage: currentPage }),
     onSetAllMovies: (allMovies) =>
       dispatch({ type: actionTypes.SET_ALL_MOVIES, allMovies: allMovies }),
+    onSetMoviesCount: (moviesCount) =>
+      dispatch({ type: actionTypes.SET_MOVIES_COUNT, moviesCount: moviesCount }),
   };
 };
 
