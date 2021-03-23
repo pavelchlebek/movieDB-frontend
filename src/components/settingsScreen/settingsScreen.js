@@ -81,7 +81,6 @@ class SettingsScreen extends Component {
   };
 
   render() {
-    // console.log("directors: ", this.state.directors);
     return (
       <div className={classes.List}>
         <div className={classes.MovieBox}>

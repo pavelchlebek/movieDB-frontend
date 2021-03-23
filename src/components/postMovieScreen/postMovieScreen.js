@@ -6,6 +6,7 @@ import classes from "./postMovieScreen.module.css";
 import Input from "../input/input";
 import Button from "../button/button";
 import TagList from "../tagList/tagList";
+import AlertMessage from "../alertMessage/alertMessage";
 
 import { genres } from "../../data/data";
 
@@ -23,6 +24,7 @@ class PostMovieScreen extends Component {
     description: "",
     serverMessage: "",
     serverTitle: "",
+    error: null,
   };
 
   handlePostMovie = (event) => {
@@ -73,6 +75,10 @@ class PostMovieScreen extends Component {
         .catch((err) => {
           console.log(err);
         });
+    } else {
+      this.setState({
+        error: "Prosím, vyplněte všechna pole formuláře!",
+      });
     }
   };
 
@@ -101,10 +107,6 @@ class PostMovieScreen extends Component {
   };
 
   render() {
-    console.log(
-      "cast: ",
-      this.state.cast.split(",").map((actor) => actor.trim())
-    );
     const form = (
       <div className={classes.List}>
         <h2 className={classes.Heading}>Přidat nový film do databáze</h2>
@@ -174,6 +176,7 @@ class PostMovieScreen extends Component {
           />
           <Button type="submit" title="Uložit film" />
         </form>
+        <AlertMessage visible={this.state.error} message={this.state.error} />
       </div>
     );
 

@@ -41,7 +41,7 @@ class MovieList extends Component {
         });
     }
 
-    // conditionally if (this.props.userId)
+    // conditionally if signed in
     if (this.props.userId) {
       axios
         .get("http://localhost:8080/get-user-movies/" + this.props.userId)
@@ -53,17 +53,6 @@ class MovieList extends Component {
         });
     }
   }
-
-  // pageHandler = (page) => {
-  //   const showMovies = this.state.editedMovies.slice(
-  //     (page - 1) * this.state.moviesPerPage,
-  //     page * this.state.moviesPerPage
-  //   );
-  //   this.setState({
-  //     showMovies: showMovies,
-  //     currentPage: page,
-  //   });
-  // };
 
   pageHandler = (page) => {
     const queryString = `/${this.props.genres[0]}/${this.props.actors[0]}/${this.props.directors[0]}/${this.props.origins[0]}`;
@@ -82,12 +71,10 @@ class MovieList extends Component {
   };
 
   nextHandler = () => {
-    // this.pageHandler(this.state.currentPage + 1);
     this.pageHandler(this.props.currentPage + 1);
   };
 
   previousHandler = () => {
-    // this.pageHandler(this.state.currentPage - 1);
     this.pageHandler(this.props.currentPage - 1);
   };
 
@@ -97,14 +84,6 @@ class MovieList extends Component {
 
   render() {
     window.scrollTo(0, 0);
-    // console.log("positionOnPage: ", window.pageYOffset);
-    // console.log(window.scrollY);
-    // console.log("currentPage: ", this.state.currentPage);
-    // console.log("editedMovies: ", this.state.editedMovies);
-    // console.log("count: ", this.state.count);
-    // console.log("genres: ", this.props.genres[0]);
-    // console.log("actors: ", this.props.actors[0]);
-    console.log("editedMovies: ", this.state.editedMovies);
     return (
       <div className={classes.List}>
         <Modal show={this.state.modalShow} modalClosed={this.handleModalClosed}>
@@ -116,25 +95,17 @@ class MovieList extends Component {
             <Button onClick={this.handleRedirect} title="Nastavení" />
           </div>
         </Modal>
-        {/* <div className={classes.Settings}>
-          <p>genres: {this.props.genres}</p>
-          <p>actors: {this.props.actors}</p>
-          <p>directors: {this.props.directors}</p>
-          <p>origins: {this.props.origins}</p>
-        </div> */}
         {this.props.allMovies.map((movie) => {
           return (
             <MovieCard
               key={movie._id}
-              // src={movie.imageUrl}
-              src={`http://localhost:8080/${movie.fileName}.png`}
+              src={movie.fileName ? `http://localhost:8080/${movie.fileName}.png` : movie.imageUrl}
               alt={movie.title}
               title={movie.title}
               year={movie.year}
               tags={movie.genres}
               cast={movie.cast.slice(0, 3)}
               onClick={this.goToDetails.bind(null, movie._id)}
-              // seen={this.props.myMovies.includes(movie._id)}
               seen={this.props.myMovies.some((item) => item._id === movie._id)}
             />
           );
@@ -146,13 +117,7 @@ class MovieList extends Component {
           active={this.getActive}
           next={this.nextHandler}
           previous={this.previousHandler}
-          // showPrevious={this.state.currentPage > 1 ? true : false}
           showPrevious={this.props.currentPage > 1 ? true : false}
-          // showNext={
-          //   this.state.currentPage < Math.ceil(this.state.count / this.state.moviesPerPage)
-          //     ? true
-          //     : false
-          // }
           showNext={
             this.props.currentPage < Math.ceil(this.props.moviesCount / this.state.moviesPerPage)
               ? true
@@ -169,7 +134,6 @@ const mapStateToProps = (state) => {
     myMovies: state.movies.movies,
     allMovies: state.movies.allMovies,
     userId: state.movies.userId,
-    // redux settings
     genres: state.movies.genres,
     actors: state.movies.actors,
     directors: state.movies.directors,
@@ -181,7 +145,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    // onGetAllMovies: (movies) => dispatch({ type: actionTypes.GET_ALL_MOVIES, allMovies: movies }),
     onSetMyMovies: (myMovies) => dispatch({ type: actionTypes.SET_MY_MOVIES, myMovies: myMovies }),
     onSetCurrentPage: (currentPage) =>
       dispatch({ type: actionTypes.SET_CURRENT_PAGE, currentPage: currentPage }),

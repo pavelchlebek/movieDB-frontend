@@ -30,12 +30,10 @@ class MovieScreen extends Component {
           id: this.props.userId,
         })
         .then((result) => {
-          // console.log("resultData: ", result.data);
           axios
-            .get("http://localhost:8080/get-user-movies/" + this.props.userId) // changes here
+            .get("http://localhost:8080/get-user-movies/" + this.props.userId)
             .then((result) => {
               this.props.onSetMyMovies(result.data.myMovies);
-              console.log("getMyMovies: ", result.data.myMovies);
             })
             .catch((err) => {
               console.log("getMyMoviesError: ", err);
@@ -74,7 +72,6 @@ class MovieScreen extends Component {
   }
 
   render() {
-    console.log("seen: ", this.state.seen);
     let cast = [];
     if (Array.isArray(this.props.currentMovie.cast)) {
       cast = this.props.currentMovie.cast.slice(0, 10);
@@ -150,7 +147,6 @@ class MovieScreen extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    // allMovies: state.movies.allMovies,
     myMovies: state.movies.movies,
     userId: state.movies.userId,
     userName: state.movies.userName,
@@ -160,7 +156,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    // onSeenClicked: (id) => dispatch({ type: actionTypes.ADD_MOVIE, movieId: id }),
     onSetCurrentMovie: (movie) =>
       dispatch({ type: actionTypes.SET_CURRENT_MOVIE, currentMovie: movie }),
     onToggleMovie: (seenMovies) =>
