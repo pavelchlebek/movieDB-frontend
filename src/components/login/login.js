@@ -44,15 +44,7 @@ class Login extends Component {
               userId: result.data.id,
             });
             this.props.onLogin(result.data.user, result.data.id);
-            console.log(
-              "loggedIn: ",
-              this.state.loggedIn,
-              "userId: ",
-              this.state.userId,
-              "userName: ",
-              this.state.userName
-            );
-            this.props.history.push("/");
+            this.props.history.goBack();
           }
 
           if (!result.data.user) {
@@ -218,6 +210,7 @@ const mapStateToProps = (state) => {
   return {
     userName: state.movies.userName,
     userId: state.movies.userId,
+    currentMovie: state.movies.currentMovie,
   };
 };
 

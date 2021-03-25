@@ -10,7 +10,7 @@ export const genres = [
   "dokumntární",
   "životopisný",
   "seriál",
-  "Sci-Fi",
+  "sci-fi",
   "road movie",
 ];
 
