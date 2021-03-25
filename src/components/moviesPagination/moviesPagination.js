@@ -23,8 +23,12 @@ class MovieList extends Component {
         : false,
   };
 
+  // goToDetails = (movieId) => {
+  //   this.props.history.push("/movie-detail/" + movieId);
+  // };
+
   goToDetails = (movieId) => {
-    this.props.history.push("/movie-detail/" + movieId);
+    this.props.history.push("/responsive-detail/" + movieId);
   };
 
   componentDidMount() {

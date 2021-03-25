@@ -7,7 +7,9 @@ import SettingsScreen from "./components/settingsScreen/settingsScreen";
 import Login from "./components/login/login";
 import PostMovieScreen from "./components/postMovieScreen/postMovieScreen";
 import MoviesPagination from "./components/moviesPagination/moviesPagination";
-import MovieDetail from "./components/movieDetail/movieDetail";
+// import MovieDetail from "./components/movieDetail/movieDetail";
+
+import ResponsiveDetailScreen from "./components/responsiveDetailScreen/responsiveDetailScreen";
 
 class App extends Component {
   state = {};
@@ -21,7 +23,8 @@ class App extends Component {
           <Route path="/authenticate" exact component={Login} />
           <Route path="/post-movie" exact component={PostMovieScreen} />
           <Route path="/" exact component={MoviesPagination} />
-          <Route path="/movie-detail/:movieId" exact component={MovieDetail} />
+          {/* <Route path="/movie-detail/:movieId" exact component={MovieDetail} /> */}
+          <Route path="/responsive-detail/:movieId" exact component={ResponsiveDetailScreen} />
         </Switch>
       </Layout>
     );

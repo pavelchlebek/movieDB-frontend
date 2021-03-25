@@ -16,6 +16,7 @@ const NavigationItems = (props) => (
     <NavigationItem link="/authenticate">
       {props.userName ? props.userName : "Log In"}
     </NavigationItem>
+    <NavigationItem link="/responsive-detail">Responsive</NavigationItem>
   </ul>
 );
 
