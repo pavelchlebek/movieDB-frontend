@@ -9,6 +9,8 @@ import TagList from "../tagList/tagList";
 import Modal from "../modal/modal";
 import Button from "../button/button";
 
+import { arrayPrint } from "../../utilities/arrayPrint";
+
 class MovieScreen extends Component {
   state = {
     seen: false,
@@ -116,15 +118,14 @@ class MovieScreen extends Component {
               <div className={classes.Cast}>
                 <h5>
                   <span className={classes.Blue}>Režie: </span>
-                  {this.props.currentMovie.direction}
+                  {arrayPrint(this.props.currentMovie.direction)}
                 </h5>
                 <h5>
-                  <span className={classes.Blue}>Hrají: </span>{" "}
-                  {cast.map((actor) => {
-                    return `${actor}, `;
-                  })}
+                  <span className={classes.Blue}>Hrají: </span> {arrayPrint(cast)}
                 </h5>
-                <h5>{`${this.props.currentMovie.length} minut / ${this.props.currentMovie.origin}`}</h5>
+                <h5>{`${this.props.currentMovie.length} minut / ${arrayPrint(
+                  this.props.currentMovie.origin
+                )}`}</h5>
               </div>
             </div>
           </div>
