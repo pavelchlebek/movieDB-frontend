@@ -74,6 +74,9 @@ class MovieScreen extends Component {
   }
 
   render() {
+    console.log("isArray origin: ", Array.isArray(this.props.currentMovie.origin));
+    console.log("isArray direction: ", Array.isArray(this.props.currentMovie.direction));
+
     let cast = [];
     if (Array.isArray(this.props.currentMovie.cast)) {
       cast = this.props.currentMovie.cast.slice(0, 10);
@@ -118,14 +121,16 @@ class MovieScreen extends Component {
               <div className={classes.Cast}>
                 <h5>
                   <span className={classes.Blue}>Režie: </span>
-                  {arrayPrint(this.props.currentMovie.direction)}
+                  {this.props.currentMovie.direction &&
+                    arrayPrint(this.props.currentMovie.direction)}
                 </h5>
                 <h5>
                   <span className={classes.Blue}>Hrají: </span> {arrayPrint(cast)}
                 </h5>
-                <h5>{`${this.props.currentMovie.length} minut / ${arrayPrint(
-                  this.props.currentMovie.origin
-                )}`}</h5>
+                <h5>{`${this.props.currentMovie.length} minut / 
+                  ${
+                    this.props.currentMovie.origin && arrayPrint(this.props.currentMovie.origin)
+                  }`}</h5>
               </div>
             </div>
           </div>
