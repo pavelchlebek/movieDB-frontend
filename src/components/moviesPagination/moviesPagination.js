@@ -46,7 +46,7 @@ class MovieList extends Component {
       axios
         .get("http://localhost:8080/get-user-movies/" + this.props.userId)
         .then((result) => {
-          this.props.onSetMyMovies(result.data.myMovies);
+          this.props.onSetMyMovies(result.data.movieArray);
         })
         .catch((err) => {
           console.log("getMyMoviesError: ", err);

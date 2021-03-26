@@ -35,7 +35,7 @@ class MovieScreen extends Component {
           axios
             .get("http://localhost:8080/get-user-movies/" + this.props.userId)
             .then((result) => {
-              this.props.onSetMyMovies(result.data.myMovies);
+              this.props.onSetMyMovies(result.data.movieArray);
             })
             .catch((err) => {
               console.log("getMyMoviesError: ", err);
@@ -74,9 +74,6 @@ class MovieScreen extends Component {
   }
 
   render() {
-    console.log("isArray origin: ", Array.isArray(this.props.currentMovie.origin));
-    console.log("isArray direction: ", Array.isArray(this.props.currentMovie.direction));
-
     let cast = [];
     if (Array.isArray(this.props.currentMovie.cast)) {
       cast = this.props.currentMovie.cast.slice(0, 10);
