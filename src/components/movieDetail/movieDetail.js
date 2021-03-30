@@ -8,13 +8,15 @@ import classes from "./movieDetail.module.css";
 import TagList from "../tagList/tagList";
 import Modal from "../modal/modal";
 import Button from "../button/button";
+import Spinner from "../spinner/spinner";
 
 import { arrayPrint } from "../../utilities/arrayPrint";
 
 class MovieScreen extends Component {
   state = {
-    seen: false,
+    // seen: false,
     modalShow: false,
+    seenClicked: false,
   };
 
   seenHandler = (id) => {
@@ -23,8 +25,11 @@ class MovieScreen extends Component {
         modalShow: true,
       });
     } else {
-      this.setState((prevState) => {
-        return { seen: !prevState.seen };
+      // this.setState((prevState) => {
+      //   return { seen: !prevState.seen };
+      // });
+      this.setState({
+        seenClicked: true,
       });
       axios
         .post("http://localhost:8080/add-movie", {
@@ -36,6 +41,9 @@ class MovieScreen extends Component {
             .get("http://localhost:8080/get-user-movies/" + this.props.userId)
             .then((result) => {
               this.props.onSetMyMovies(result.data.movieArray);
+              this.setState({
+                seenClicked: false,
+              });
             })
             .catch((err) => {
               console.log("getMyMoviesError: ", err);
@@ -132,12 +140,16 @@ class MovieScreen extends Component {
             </div>
           </div>
           <div className={classes.SeenToggle}>
-            <h5
-              onClick={this.seenHandler.bind(this, this.props.currentMovie._id)}
-              className={attachedClasses}
-            >
-              Viděl jsem
-            </h5>
+            {this.state.seenClicked ? (
+              <Spinner />
+            ) : (
+              <h5
+                onClick={this.seenHandler.bind(this, this.props.currentMovie._id)}
+                className={attachedClasses}
+              >
+                Viděl jsem
+              </h5>
+            )}
           </div>
           <div className={classes.Description}>
             <p className={classes.Paragraph}>{this.props.currentMovie.description}</p>
