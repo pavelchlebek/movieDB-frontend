@@ -115,30 +115,34 @@ class MovieScreen extends Component {
             <h3 className={classes.Year}>{`(${this.props.currentMovie.year})`}</h3>
             <h3 className={classes.Rating}>{`${this.props.currentMovie.rating}%`}</h3>
           </div>
-          <div className={classes.PictureBox}>
-            <img
-              className={classes.Picture}
-              src={this.props.currentMovie.imageUrl}
-              alt={this.props.currentMovie.title}
-            />
-            <div className={classes.Tags}>
-              <TagList tags={tags} clicked={() => {}} color={this.getColor} />
-              <div className={classes.Cast}>
-                <h5>
-                  <span className={classes.Blue}>Režie: </span>
-                  {this.props.currentMovie.direction &&
-                    arrayPrint(this.props.currentMovie.direction)}
-                </h5>
-                <h5>
-                  <span className={classes.Blue}>Hrají: </span> {arrayPrint(cast)}
-                </h5>
-                <h5>{`${this.props.currentMovie.length} minut / 
+          {this.props.currentMovie.genres ? (
+            <div className={classes.PictureBox}>
+              <img
+                className={classes.Picture}
+                src={this.props.currentMovie.imageUrl}
+                alt={this.props.currentMovie.title}
+              />
+              <div className={classes.Tags}>
+                <TagList tags={tags} clicked={() => {}} color={this.getColor} />
+                <div className={classes.Cast}>
+                  <h5>
+                    <span className={classes.Blue}>Režie: </span>
+                    {this.props.currentMovie.direction &&
+                      arrayPrint(this.props.currentMovie.direction)}
+                  </h5>
+                  <h5>
+                    <span className={classes.Blue}>Hrají: </span> {arrayPrint(cast)}
+                  </h5>
+                  <h5>{`${this.props.currentMovie.length} minut / 
                   ${
                     this.props.currentMovie.origin && arrayPrint(this.props.currentMovie.origin)
                   }`}</h5>
+                </div>
               </div>
             </div>
-          </div>
+          ) : (
+            <Spinner />
+          )}
           <div className={classes.SeenToggle}>
             {this.state.seenClicked ? (
               <Spinner />
