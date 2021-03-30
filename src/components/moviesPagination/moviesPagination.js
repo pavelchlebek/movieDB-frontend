@@ -6,6 +6,7 @@ import MovieCard from "../movieCard/movieCard";
 import Pagination from "../pagination/pagination";
 import Modal from "../modal/modal";
 import Button from "../button/button";
+import Spinner from "../spinner/spinner";
 
 import classes from "./moviesPagination.module.css";
 
@@ -84,7 +85,7 @@ class MovieList extends Component {
 
   render() {
     window.scrollTo(0, 0);
-    return (
+    return this.props.allMovies.length > 0 ? (
       <div className={classes.List}>
         <Modal show={this.state.modalShow} modalClosed={this.handleModalClosed}>
           <div className={classes.ModalContent}>
@@ -125,6 +126,8 @@ class MovieList extends Component {
           }
         />
       </div>
+    ) : (
+      <Spinner />
     );
   }
 }

@@ -19,7 +19,7 @@ class Login extends Component {
     password: "",
     signupData: "",
     continue: "",
-    loading: false,
+    signInLoading: false,
     errorMessage: "",
     loggedIn: false,
     userName: "",
@@ -31,6 +31,9 @@ class Login extends Component {
     event.preventDefault();
     // http request
     if (this.state.email && this.state.password) {
+      this.setState({
+        signInLoading: true,
+      });
       axios
         .post("http://localhost:8080/signin", {
           email: this.state.email,
@@ -42,6 +45,7 @@ class Login extends Component {
               loggedIn: true,
               userName: result.data.user,
               userId: result.data.id,
+              signInLoading: false,
             });
             this.props.onLogin(result.data.user, result.data.id);
             this.props.history.goBack();
@@ -165,6 +169,7 @@ class Login extends Component {
               value={this.state.password}
             />
             <Button type="submit" title="Přihlásit" />
+            {this.state.signInLoading ? <Spinner /> : null}
             {this.state.loggingError ? <p>{this.state.loggingError}</p> : null}
           </form>
         </div>

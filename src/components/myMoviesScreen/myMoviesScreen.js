@@ -6,11 +6,14 @@ import * as actionTypes from "../../store/actions/moviesActions";
 
 import MovieCard from "../movieCard/movieCard";
 import Button from "../button/button";
+import Spinner from "../spinner/spinner";
 
 import classes from "./myMoviesScreen.module.css";
 
 class MyMoviesScreen extends Component {
-  state = {};
+  state = {
+    myMoviesSet: false,
+  };
 
   goToDetails = (movieId) => {
     this.props.history.push("/movie-detail/" + movieId);
@@ -22,6 +25,9 @@ class MyMoviesScreen extends Component {
         .get("http://localhost:8080/get-user-movies/" + this.props.userId)
         .then((result) => {
           this.props.onSetMyMovies(result.data.movieArray);
+          this.setState({
+            myMoviesSet: true,
+          });
         })
         .catch((err) => {
           console.log("getMyMoviesError: ", err);
@@ -42,7 +48,8 @@ class MyMoviesScreen extends Component {
             <Button onClick={this.handleRedirect} title="Přihlásit" />
           </div>
         )}
-        {this.props.myMovies.length === 0 && this.props.userId ? (
+        {this.props.userId && !this.state.myMoviesSet && <Spinner />}
+        {this.state.myMoviesSet && this.props.myMovies.length === 0 && this.props.userId ? (
           <h4 className={classes.Heading}>No movies seen!</h4>
         ) : null}
         {this.props.myMovies.map((movie) => {
