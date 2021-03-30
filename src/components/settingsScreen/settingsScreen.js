@@ -6,6 +6,7 @@ import * as actionTypes from "../../store/actions/moviesActions";
 import TagList from "../tagList/tagList";
 import AlertMessage from "../alertMessage/alertMessage";
 import Button from "../button/button";
+import Spinner from "../spinner/spinner";
 
 import classes from "./settingsScreen.module.css";
 
@@ -100,51 +101,59 @@ class SettingsScreen extends Component {
               message="Prosím, vyberte pouze jeden žánr!"
             />
           </div>
-          <div className={classes.Section}>
-            <h4 className={classes.Title}>Herci:</h4>
-            <div className={classes.TagList}>
-              <TagList
-                tags={this.state.actors}
-                justify="Center"
-                clicked={this.toggleActorTag}
-                color={this.getColor}
-              />
+          {this.state.actors.length > 0 &&
+          this.state.directors.length > 0 &&
+          this.state.origins.length > 0 ? (
+            <div>
+              <div className={classes.Section}>
+                <h4 className={classes.Title}>Herci:</h4>
+                <div className={classes.TagList}>
+                  <TagList
+                    tags={this.state.actors}
+                    justify="Center"
+                    clicked={this.toggleActorTag}
+                    color={this.getColor}
+                  />
+                </div>
+                <AlertMessage
+                  visible={this.props.actorTags.length > 1}
+                  message="Prosím, vyberte pouze jednoho herce!"
+                />
+              </div>
+              <div className={classes.Section}>
+                <h4 className={classes.Title}>Režiséři:</h4>
+                <div className={classes.TagList}>
+                  <TagList
+                    tags={this.state.directors}
+                    justify="Center"
+                    clicked={this.toggleDirectorTag}
+                    color={this.getDirectorColor}
+                  />
+                </div>
+                <AlertMessage
+                  visible={this.props.directorTags.length > 1}
+                  message="Prosím, vyberte pouze jedenoho režiséra!"
+                />
+              </div>
+              <div className={classes.Section}>
+                <h4 className={classes.Title}>Původ:</h4>
+                <div className={classes.TagList}>
+                  <TagList
+                    tags={this.state.origins}
+                    justify="Center"
+                    clicked={this.toggleOriginTag}
+                    color={this.getColor}
+                  />
+                </div>
+                <AlertMessage
+                  visible={this.props.originTags.length > 1}
+                  message="Prosím, vyberte pouze jednu zemi původu!"
+                />
+              </div>
             </div>
-            <AlertMessage
-              visible={this.props.actorTags.length > 1}
-              message="Prosím, vyberte pouze jednoho herce!"
-            />
-          </div>
-          <div className={classes.Section}>
-            <h4 className={classes.Title}>Režiséři:</h4>
-            <div className={classes.TagList}>
-              <TagList
-                tags={this.state.directors}
-                justify="Center"
-                clicked={this.toggleDirectorTag}
-                color={this.getDirectorColor}
-              />
-            </div>
-            <AlertMessage
-              visible={this.props.directorTags.length > 1}
-              message="Prosím, vyberte pouze jedenoho režiséra!"
-            />
-          </div>
-          <div className={classes.Section}>
-            <h4 className={classes.Title}>Původ:</h4>
-            <div className={classes.TagList}>
-              <TagList
-                tags={this.state.origins}
-                justify="Center"
-                clicked={this.toggleOriginTag}
-                color={this.getColor}
-              />
-            </div>
-            <AlertMessage
-              visible={this.props.originTags.length > 1}
-              message="Prosím, vyberte pouze jednu zemi původu!"
-            />
-          </div>
+          ) : (
+            <Spinner />
+          )}
           <div className={classes.Button}>
             <Button onClick={this.handleRedirect} title="Přejít na Filmy" />
           </div>

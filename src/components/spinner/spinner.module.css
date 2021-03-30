@@ -1,3 +1,7 @@
+.Wrapper {
+  margin-bottom: 40px;
+}
+
 .loader,
 .loader:before,
 .loader:after {
