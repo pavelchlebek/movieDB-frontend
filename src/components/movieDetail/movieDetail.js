@@ -10,6 +10,8 @@ import Modal from "../modal/modal";
 import Button from "../button/button";
 import Spinner from "../spinner/spinner";
 
+import { axiosURL } from "../../axios/axios";
+
 import { arrayPrint } from "../../utilities/arrayPrint";
 
 class MovieScreen extends Component {
@@ -25,20 +27,17 @@ class MovieScreen extends Component {
         modalShow: true,
       });
     } else {
-      // this.setState((prevState) => {
-      //   return { seen: !prevState.seen };
-      // });
       this.setState({
         seenClicked: true,
       });
       axios
-        .post("http://localhost:8080/add-movie", {
+        .post(`${axiosURL}/add-movie`, {
           movieId: id,
           id: this.props.userId,
         })
         .then((result) => {
           axios
-            .get("http://localhost:8080/get-user-movies/" + this.props.userId)
+            .get(`${axiosURL}/get-user-movies/` + this.props.userId)
             .then((result) => {
               this.props.onSetMyMovies(result.data.movieArray);
               this.setState({
@@ -72,7 +71,7 @@ class MovieScreen extends Component {
   componentDidMount() {
     const movieId = this.props.match.params.movieId;
     axios
-      .get("http://localhost:8080/movie-details/" + movieId)
+      .get(`${axiosURL}/movie-details/` + movieId)
       .then((result) => {
         this.props.onSetCurrentMovie(result.data);
       })

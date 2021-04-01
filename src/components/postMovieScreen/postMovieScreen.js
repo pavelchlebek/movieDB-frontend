@@ -8,6 +8,8 @@ import Button from "../button/button";
 import TagList from "../tagList/tagList";
 import AlertMessage from "../alertMessage/alertMessage";
 
+import { axiosURL } from "../../axios/axios";
+
 import { genres } from "../../data/data";
 
 class PostMovieScreen extends Component {
@@ -54,7 +56,7 @@ class PostMovieScreen extends Component {
       description
     ) {
       axios
-        .post("http://localhost:8080/post-movie", {
+        .post(`${axiosURL}/post-movie`, {
           title: title,
           year: year,
           imageUrl: imageUrl,

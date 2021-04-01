@@ -8,6 +8,8 @@ import Modal from "../modal/modal";
 import Button from "../button/button";
 import Spinner from "../spinner/spinner";
 
+import { axiosURL } from "../../axios/axios";
+
 import classes from "./moviesPagination.module.css";
 
 import * as actionTypes from "../../store/actions/moviesActions";
@@ -32,7 +34,7 @@ class MovieList extends Component {
     if (!this.state.modalShow) {
       const queryString = `/${this.props.genres[0]}/${this.props.actors[0]}/${this.props.directors[0]}/${this.props.origins[0]}`;
       axios
-        .get("http://localhost:8080/movies-settings/" + this.props.currentPage + queryString)
+        .get(`${axiosURL}/movies-settings/` + this.props.currentPage + queryString)
         .then((result) => {
           this.props.onSetAllMovies(result.data.result);
           this.props.onSetMoviesCount(result.data.count);
@@ -45,7 +47,7 @@ class MovieList extends Component {
     // conditionally if signed in
     if (this.props.userId) {
       axios
-        .get("http://localhost:8080/get-user-movies/" + this.props.userId)
+        .get(`${axiosURL}/get-user-movies/` + this.props.userId)
         .then((result) => {
           this.props.onSetMyMovies(result.data.movieArray);
         })
@@ -57,7 +59,7 @@ class MovieList extends Component {
 
   pageHandler = (page) => {
     const queryString = `/${this.props.genres[0]}/${this.props.actors[0]}/${this.props.directors[0]}/${this.props.origins[0]}`;
-    axios.get("http://localhost:8080/movies-settings/" + page + queryString).then((result) => {
+    axios.get(`${axiosURL}/movies-settings/` + page + queryString).then((result) => {
       this.props.onSetAllMovies(result.data.result);
       this.props.onSetCurrentPage(page);
     });
@@ -100,7 +102,7 @@ class MovieList extends Component {
           return (
             <MovieCard
               key={movie._id}
-              src={movie.fileName ? `http://localhost:8080/${movie.fileName}.png` : movie.imageUrl}
+              src={movie.fileName ? `${axiosURL}/${movie.fileName}.png` : movie.imageUrl}
               alt={movie.title}
               title={movie.title}
               year={movie.year}

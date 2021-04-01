@@ -8,6 +8,8 @@ import AlertMessage from "../alertMessage/alertMessage";
 import Button from "../button/button";
 import Spinner from "../spinner/spinner";
 
+import { axiosURL } from "../../axios/axios";
+
 import classes from "./settingsScreen.module.css";
 
 import { genres } from "../../data/data";
@@ -20,17 +22,17 @@ class SettingsScreen extends Component {
   };
 
   componentDidMount() {
-    axios.get("http://localhost:8080/get-actors").then((result) => {
+    axios.get(`${axiosURL}/get-actors`).then((result) => {
       this.setState({
         actors: result.data,
       });
     });
-    axios.get("http://localhost:8080/get-directors").then((result) => {
+    axios.get(`${axiosURL}/get-directors`).then((result) => {
       this.setState({
         directors: result.data,
       });
     });
-    axios.get("http://localhost:8080/get-origins").then((result) => {
+    axios.get(`${axiosURL}/get-origins`).then((result) => {
       this.setState({
         origins: result.data,
       });

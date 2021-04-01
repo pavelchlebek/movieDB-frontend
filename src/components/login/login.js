@@ -10,6 +10,8 @@ import Input from "../input/input";
 import Button from "../button/button";
 import Spinner from "../spinner/spinner";
 
+import { axiosURL } from "../../axios/axios";
+
 class Login extends Component {
   state = {
     newName: "",
@@ -35,7 +37,7 @@ class Login extends Component {
         signInLoading: true,
       });
       axios
-        .post("http://localhost:8080/signin", {
+        .post(`${axiosURL}/signin`, {
           email: this.state.email,
           password: this.state.password,
         })
@@ -54,6 +56,7 @@ class Login extends Component {
           if (!result.data.user) {
             this.setState({
               loggingError: result.data.message,
+              signInLoading: false,
             });
             console.log("LoggingError: ", this.state.loggingError);
           }
@@ -75,7 +78,7 @@ class Login extends Component {
         errorMessage: "",
       });
       axios
-        .post("http://localhost:8080/signup", {
+        .post(`${axiosURL}/signup`, {
           name: this.state.newName,
           email: this.state.newEmail,
           password: this.state.newPassword,
